@@ -1,3 +1,5 @@
+// Add the shipping cost as an additional parameter determining proposal's attractiveness.
+// Buyer agent should take into account the total price (book price + shipping cost).
 package jadelab2;
 
 import jade.core.AID;
@@ -9,7 +11,7 @@ import javax.swing.*;
 class BookSellerGui extends JFrame {	
 	private BookSellerAgent myAgent;
 	
-	private JTextField titleField, priceField;
+	private JTextField titleField, priceField, shippingField; // dodajemy pole shippingField
 	
 	BookSellerGui(BookSellerAgent a) {
 		super(a.getLocalName());
@@ -17,13 +19,16 @@ class BookSellerGui extends JFrame {
 		myAgent = a;
 		
 		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(2, 2));
+		p.setLayout(new GridLayout(3, 2)); // zwiększamy ilość wierszy
 		p.add(new JLabel("Title:"));
 		titleField = new JTextField(15);
 		p.add(titleField);
 		p.add(new JLabel("Price:"));
 		priceField = new JTextField(15);
 		p.add(priceField);
+		p.add(new JLabel(" Shipping:")); // dodajemy labelke Shipping
+		shippingField = new JTextField(15); // dodajemy pole do wprowadzania cen dostaw
+		p.add(shippingField); // dodajemy aby wyśwetliło się w GUI
 		getContentPane().add(p, BorderLayout.CENTER);
 		
 		JButton addButton = new JButton("Add");
@@ -32,9 +37,12 @@ class BookSellerGui extends JFrame {
 				try {
 					String title = titleField.getText().trim();
 					String price = priceField.getText().trim();
-					myAgent.updateCatalogue(title, Integer.parseInt(price));
+					String shippingPrice = shippingField.getText().trim(); // pobieramy do zmiennej wartosć wprowadzoną wyżej
+					// myAgent.updateCatalogue(title, Integer.parseInt(price));
+					myAgent.updateCatalogue(title, Integer.parseInt(price)+Integer.parseInt(shippingPrice)); //dodajemy cene produktu do ceny dostawy
 					titleField.setText("");
 					priceField.setText("");
+					shippingField.setText(""); // zerujemy
 				}
 				catch (Exception e) {
 					JOptionPane.showMessageDialog(BookSellerGui.this, "Invalid values. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
