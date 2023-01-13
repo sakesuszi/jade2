@@ -1,5 +1,6 @@
-// Add the shipping cost as an additional parameter determining proposal's attractiveness.
-// Buyer agent should take into account the total price (book price + shipping cost).
+// Assign the budget - certain amount of money - to the buyer agent.
+// When the buyer makes a purchase (receives INFORM message confirming the successful purchase),
+// budget decreases - money is withdrawn from the budget. Agent cannot spend more money than it owns.
 package jadelab2;
 
 import jade.core.AID;
@@ -26,7 +27,7 @@ class BookSellerGui extends JFrame {
 		p.add(new JLabel("Price:"));
 		priceField = new JTextField(15);
 		p.add(priceField);
-		p.add(new JLabel(" Shipping:")); // dodajemy labelke Shipping
+		p.add(new JLabel("Shipping:")); // dodajemy labelke Shipping
 		shippingField = new JTextField(15); // dodajemy pole do wprowadzania cen dostaw
 		p.add(shippingField); // dodajemy aby wyśwetliło się w GUI
 		getContentPane().add(p, BorderLayout.CENTER);
