@@ -152,7 +152,7 @@ public class BookBuyerAgent extends Agent {
 			  budget = budget - bestPrice; // w przypadku powodzenia zakupu odejmujemy kwote zakupu od budzetu
 	          System.out.println(getAID().getLocalName() + ": " + targetBookTitle + " purchased for " + bestPrice + " from " + reply.getSender().getLocalName());
 			  System.out.println(getAID().getLocalName() + ": waiting for the next purchase order.");
-			  System.out.println(getAID().getLocalName() + ": Pozostało " + budget + " w budżecie"); // Wyświetlamy ile pozostało w budżecie po prawidłowym zakupie
+			  System.out.println(getAID().getLocalName() + ": Pozostalo " + budget + " w budzecie"); // Wyświetlamy ile pozostało w budżecie po prawidłowym zakupie
 			  targetBookTitle = "";
 	          //myAgent.doDelete();
 	        }
